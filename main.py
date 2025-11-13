@@ -22,9 +22,11 @@ def telegram_mesaj_gonder(text: str):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     data = {"chat_id": CHAT_ID, "text": text}
     try:
-        requests.post(url, data=data, timeout=10)
-    except:
-        pass
+        resp = requests.post(url, data=data, timeout=10)
+        print("Telegram status:", resp.status_code, resp.text)
+    except Exception as e:
+        print("Telegram HATASI:", e)
+
 
 def altin_fiyat():
     try:
