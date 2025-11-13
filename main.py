@@ -116,7 +116,9 @@ def bot_loop():
         time.sleep(30)
 
 if __name__ == "__main__":
+    telegram_mesaj_gonder("✅ Render üzerinde altın botu başlatıldı")
     threading.Thread(target=bot_loop, daemon=True).start()
     port = int(os.environ.get("PORT", 8080))
     app.run(host="0.0.0.0", port=port)
+
 
