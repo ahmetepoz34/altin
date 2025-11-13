@@ -4,6 +4,8 @@ import requests
 import numpy as np
 from datetime import datetime, timedelta
 from flask import Flask
+import os   # ← BUNU EKLE
+
 
 # ======================= AYARLAR =======================
 TARGET_PRICE = 5800.0
