@@ -83,6 +83,12 @@ def periyodik_rapor_gonder():
 
     if datetime.now().day == 1 and saat == 9 and dakika == 0 and len(fiyat_aylik) > 10:
         telegram_mesaj_gonder(rapor_olustur(fiyat_aylik, "Aylık Altın"))
+def self_ping():
+    try:
+        requests.get("https://altin-8cf8.onrender.com", timeout=5)
+    except:
+        pass
+
 
 def bot_loop():
     alarm = False
@@ -95,6 +101,8 @@ def bot_loop():
         if fiyat:
             fiyat_kaydet(fiyat)
             periyodik_rapor_gonder()
+            if int(time.time()) % 240 == 0:  # her 4 dakikada bir
+    self_ping()
 
             if fiyat <= TARGET_PRICE and not alarm:
                 telegram_mesaj_gonder(f"📉 ALTIN ALARMI!\nGram: {fiyat} TL\nHedef: {TARGET_PRICE} TL")
